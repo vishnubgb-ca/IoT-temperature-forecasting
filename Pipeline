@@ -31,7 +31,7 @@ pipeline{
     post{
        
         always {
-            archiveArtifacts artifacts: 'cleaned_temp_series.csv', onlyIfSuccessful: true
+            archiveArtifacts artifacts: 'iot_temp_series.csv', onlyIfSuccessful: true
         }
             }
 }
