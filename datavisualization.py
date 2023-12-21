@@ -20,6 +20,18 @@ def data_visualization():
     data=data_preprocess()
     data = data.resample('T').mean().fillna(method='ffill')
     columns = ['temp']
+    start=DT.datetime(2016, 12, )
+    end=DT.datetime(2016, 12, 31)
+    start=DT.datetime(2018, 12, 5,0,0)
+    end=DT.datetime(2018, 12, 5,9,0,0)
+    for col in columns:
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=data[start:end].index, y=data[start:end][col], mode='lines', name=col))
+        fig.update_layout(title=f"Plot of {col}",template='plotly_dark')
+        fig.update_xaxes(showgrid=False,zeroline=False)
+        fig.update_yaxes(showgrid=False,zeroline=False)
+        # fig.show()
+        fig.write_image(f"series_{col}_5.jpg")
     for col in columns:
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=data.index, y=data[col], mode='lines', name=col))
@@ -36,13 +48,13 @@ def data_visualization():
         fig.update_yaxes(showgrid=False,zeroline=False)
         # fig.show()
         fig.write_image(f"box_{col}.jpg")
-    for col in columns:
-        fig = ff.create_distplot([data[col].values],group_labels=[col])
-        fig.update_layout(template='plotly_dark')
-        #fig.update_layout(plot_bgcolor = "plotly_dark")
-        fig.update_xaxes(showgrid=False,zeroline=False)
-        fig.update_yaxes(showgrid=False,zeroline=False)
-        fig.write_image(f"dist_{col}.jpg")
+    # for col in columns:
+    #     fig = ff.create_distplot([data[col].values],group_labels=[col])
+    #     fig.update_layout(template='plotly_dark')
+    #     #fig.update_layout(plot_bgcolor = "plotly_dark")
+    #     fig.update_xaxes(showgrid=False,zeroline=False)
+    #     fig.update_yaxes(showgrid=False,zeroline=False)
+    #     fig.write_image(f"dist_{col}.jpg")
         # fig.show()
     # df=df.loc[:,columns]
     # y=df.corr().columns.tolist()
