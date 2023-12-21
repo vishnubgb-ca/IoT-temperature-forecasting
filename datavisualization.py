@@ -20,8 +20,6 @@ def data_visualization():
     data=data_preprocess()
     data = data.resample('T').mean().fillna(method='ffill')
     columns = ['temp']
-    start=DT.datetime(2016, 12, )
-    end=DT.datetime(2016, 12, 31)
     start=DT.datetime(2018, 12, 5,0,0)
     end=DT.datetime(2018, 12, 5,9,0,0)
     for col in columns:
